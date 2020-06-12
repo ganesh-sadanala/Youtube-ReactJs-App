@@ -1,12 +1,28 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { Grid } from "@material-ui/core";
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
   render() {
-    return <h1>App</h1>;
+    return (
+      <Grid justify="center" container spacing={10}>
+        <Grid item xs={12}>
+          <Grid container spacing={10}>
+            <Grid item xs={12}>
+              <SearchBar />
+            </Grid>
+            <Grid item xs={8}>
+              <VideoDetail />
+            </Grid>
+            <Grid item xs={4}>
+              <VideoList />
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
+    );
   }
 }
 export default App;
