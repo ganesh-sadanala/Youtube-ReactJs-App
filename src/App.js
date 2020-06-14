@@ -5,10 +5,13 @@ import youtube from "./api/youtube";
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      videos: [],
+      selectedVideo: null,
+    };
   }
-  handleSubmit = aysnc (SearchTerm) => {
-    const response = await youtube.get("search",{
+  handleSubmit = async (searchTerm) => {
+    const response = await youtube.get("search", {
       params: {
         part: "snippet",
         maxResult: 5,
@@ -16,7 +19,11 @@ class App extends React.Component {
         q: searchTerm,
       },
     });
-  }
+    this.setState({
+      videos: response.data.items,
+      selectedVideo: response.data.items(1),
+    });
+  };
   render() {
     return (
       <Grid justify="center" container spacing={10}>
